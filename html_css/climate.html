@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./Assets/css/myStyles.css">
+    <script src="./main.js"></script>
+</head>
+
+<body>
+    <header>
+
+        <div class="logo">
+            <a href="./index.html">
+                <h1>Tellus</h1>
+                <h1>tellus</h1>
+            </a>
+        </div>
+
+        <input id="navigate-button" type="button" value="Navigera" onclick="toggleHidden('header-nav')" />
+        <nav id="header-nav" class="hidden">
+            <a href="./selfS.html">Självförsörjning</a>
+            <a href="./climate.html">Klimatet</a>
+            <a href="./recykle.html">Återvinning</a>
+            <a href="./reuse.html">Återbruka</a>
+            <a href="./lifehacks.html">Life Hacks</a>
+            <input id="q-a" type="button" value="Ställ frågor" />
+        </nav>
+    </header>
+    <div class="wrapper">
+        <div class="middlebody">
+
+            <h1>Klimatet</h1>
+            <h2>Klimatpåverkan </h2>
+            <div class="middlebody-links">
+                <div>
+                    <img src="./Assets/images/icons8-gas-station-64.png" width="50" height="50"
+                        alt="Ikon bild av en bensinstation" />
+                    <!--bilden har laddtas ner från en free image webbplats icons 8-->
+                    <a href="https://www.wwf.se/klimat/klarar-vi-klimatmalen/">Klarar vi klimatmålen?</a>
+                    <!--länk till wwf-->
+                </div>
+                <div>
+                    <img src="./Assets/images/icons8-geography-50.png" width="50" height="50"
+                        alt="Ikon bild av FN Symbol" />
+                    <!--bilden har laddtas ner från en free image webbplats icons 8-->
+                    <a href="https://unfccc.int/">United Nations Climate Change</a>
+                    <!--länk till FN-->
+                </div>
+                <div>
+                    <img src="./Assets/images/icons8-tree-planting-64.png" width="50" height="50"
+                        alt="Ikon bild av en kupad hand som håller jord och växter" />
+                    <!--bilden har laddtas ner från en free image webbplats icons 8-->
+                    <a
+                        href="https://www.naturvardsverket.se/Sa-mar-miljon/Klimat-och-luft/Klimat/Tre-satt-att-berakna-klimatpaverkande-utslapp/Sa-foljer-vi-upp-klimatmalen/">Naturvårds
+                        verket. <br> Så följs klimatmålen upp.</a>
+                    <!--länk till Naturvårdsverket-->
+                </div>
+            </div>
+
+        </div>
+        <div class="side-by-side" id="climate-lower-body">
+            <!--Innehållande element ringas in i div med både klass och id-->
+            <img src="./Assets/images/louis-hansel-ZeRAzQMf4MI-unsplash.jpg" width="500" height="400"
+                alt="Bild av en kupad hand som håller i en liten boll utformad som ett jordklot" />
+            <!-- kred till bild skaparen jordklot nummer 2 <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@louishansel?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Louis Hansel"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Louis Hansel</span></a>-->
+            <article id="climate-control-article">
+                <h2>Hur många jordklot går åt?</h2>
+                <p>Allt som produceras påverkar hav, skog, luft och allt som finns omkring oss. Idag lever vi människor
+                    på
+                    ett
+                    sätt som gör att det skulle krävas 1,7 jordklot för att ta fram de resurser
+                    som vi förbrukar och för att absorbera de utsläpp vi lämnar. I Sverige lever vi som om vi hade 4
+                    jordklot.
+                </p>
+                <p class="source">Källa WWF "Ekologiska fotavtryck" Publicerad 2019-03-19. Hämtad 20
+                    19-10-23. </p>
+
+                <h2>Vill du veta ditt avtryck?</h2>
+                <h3>En bra inkörsport för att börja dra ner på sina egna utsläpp är att ta reda på hur mycket koldioxid
+                    man
+                    förbrukar i dagsläget. Här kan du mäta dina utsläpp av koldioxid. </h3>
+                <a href="https://www.klimatkalkylatorn.se/">Klimatkalkylatorn</a>
+            </article>
+        </div>
+    </div>
+    <footer>
+        <div class="right-footer">
+            <div class="logo">
+                <a href="./index.html">
+                    <!-- länk till huvudsidan-->
+                    <h1>Tellus</h1>
+                    <h1>tellus</h1>
+                </a>
+            </div>
+            <p> Tellus tellus vill ge kunskap om hur </p>
+            <p>du enkelt kan bli mer </p>
+            <p>medveten om din klimatpåverkan</p>
+            <p>och vad du kan göra för att vi </p>
+            <p>tillsammans ska nå klimatmålen </p>
+            <p>2045. Let´s do it!</p>
+            <p>© Cristina Löfqvist </p>
+        </div>
+        <div class="left-footer">
+            <div>
+                <a>
+                    <h3>Följ oss</h3>
+                    <img src="./Assets/images/icons8-camera-80.png" width="50" height="50"
+                        alt="ikon bild av en kamera" />
+                </a>
+            </div>
+            <div>
+                <a href="./contact.html">
+                    <h3>Kontakta oss</h3>
+                    <img src="./Assets/images/icons8-secured-letter-80.png" width="50" height="50"
+                        alt="ikon bild av ett brev" />
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
