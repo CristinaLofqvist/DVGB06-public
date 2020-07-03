@@ -1,0 +1,172 @@
+<!--*********************************************************************
+ * Bloggsida med JavaScript funktioner
+ * Written by Cristina Löfqvist/ Karlstad University in June-2020.
+ *********************************************************************-->
+
+<!DOCTYPE html>
+<html lang="sv">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./css/myStyles.css">
+    <title>Document</title>
+
+    <script>
+        /*Show bloggposts*/
+        function getPosts() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "/blogg/posts/get", true);
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = this.responseText;
+                    var posts = JSON.parse(response);
+                    console.log(posts);
+                    var postarea = document.getElementById("post-area");
+                    postarea.innerHTML="";
+                    var innerposthtml = ""//
+                    for (var i = 0; i < posts.length; i++) {
+                        console.log(posts[i]);
+                        //innerposthtml += posts[i].userName + "<br>" + posts[i].title + "<br>" + posts[i].content + "<br>" + posts[i].postDate;
+                        //innerposthtml += "<br>" + "<br>" + "<br>";
+
+                        //postarea.innerHTML = innerposthtml;//
+                    
+                        var username = posts[i].userName;
+                        var userNamePost = document.createElement("h5");
+                        userNamePost.className = "userNamePost";
+                        userNamePost.innerHTML = username;
+
+                        var Title = posts[i].title;
+                        var titlePost = document.createElement("h3");
+                        titlePost.className = "titlePost";
+                        titlePost.innerHTML = Title;
+
+                        var Content = posts[i].content;
+                        var contentPost = document.createElement("p");
+                        contentPost.className = "contentPost";
+                        contentPost.innerHTML = Content;
+
+                        var Datep = posts[i].postDate;
+                        var datePost = document.createElement("p");
+                        datePost.className = "datePost";
+                        datePost.innerHTML = Datep;
+
+                        postarea.appendChild(userNamePost);
+                        postarea.appendChild(titlePost);
+                        postarea.appendChild(contentPost);
+                        postarea.appendChild(datePost);
+                    }
+                }
+            };
+            xhttp.send();
+        }
+
+        /*function deletePost(e) {
+            var i = e.target.parentNode.parentNode.rowIndex;
+            id = document.getElementById("posts").rows[i].cells[0].innerHTML
+            console.log("deleting: " + id);
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("DELETE", "/blogg/posts/delete/" + id, true);
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("posts").deleteRow(i);
+                }
+            };
+            xhttp.send();
+        }*/
+
+
+        /*Tar värdet från input elementet i form*/
+        function addPost() {
+            let user_name = document.getElementById("messageForm").elements[0].value;
+            let title = document.getElementById("messageForm").elements[1].value;
+            let content = document.getElementById("messageForm").elements[2].value;
+            //let date = document.getElementById("postDate").value;
+            alert("here")
+            if (user_name == null) {
+                
+                return
+            }
+           
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "/blogg/posts/add", true)
+            xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    alert(xhttp.responseText);
+                }
+            }
+            let json = JSON.stringify({
+                userName: user_name,
+                title: title,
+                content: content
+             
+            });
+            xhttp.send(json);
+            //location.reload();
+        }
+
+    </script>
+</head>
+
+<body>
+     <!---onload="getPosts()" <div data-ng-app="Blogg">
+    <script type="text/javascript">
+            var app = angular.module('Blogg', []) /*module is afunction and the result 
+            of this function is a angular app "Blogg" and it is saved to the variable "app"*/
+            app.controller = ('BloggCtrl', function ($scope) {
+                $scope.bloggposts = [
+                    576,
+                    77,
+                    'Meow',
+                    'Mittens',
+                    'My name is Meow',
+                    '2020-07-02 14:49:47'
+                ];
+
+            });
+            </script>-->
+        
+
+        <section id="main_content">
+            <h1>Välkommen till vår blogg<h1>
+
+                    <h3>Skriv gärna ett blogginlägg</h3>
+                    <form id="messageForm">
+                        <label>Namn</label>
+                        <input id="username" type="text" name="author" class="inputArea" placeholder="Ditt namn...">
+                        <br>
+                        <label>Titel</label>
+                        <textarea name="title" id='title' placeholder="Titel..."></textarea>
+                        <br>
+                        <label>Blogginlägg</label>
+                        <textarea name="message" id='bloggPost' placeholder="Ditt blogginlägg..."></textarea>
+                        <br>
+                        <div class="newPost">
+                            <button onclick="addPost()">NyttInlägg</button>
+                        </div>
+
+                    </form>
+                    <a onclick="getPosts()" href="#">Visa data</a>
+
+                    <h3 id="font2">Blogginlägg:</h3>
+            
+                    <div id="post-area">
+                        <!--
+                        <h5 id= "userNamePost" class="userNamePost"></h5>
+                        <h3 id="titlePost" class="titlePost"></h3>
+                        <p id="contentPost" class="contentpost"></p>
+                        <p id="datePost" class="datePost"></p>
+                        -->
+                    </div>
+                
+        </section>
+    <!--/div>
+    end of div ng-app-->
+</body>
+
+</html>
