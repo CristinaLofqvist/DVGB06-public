@@ -110,31 +110,43 @@
             //location.reload();
         }
 
+        /*Tar värdet från input elementet i form*/
+        function addUser() {
+            let first_name = document.getElementById("userForm").elements[0].value;
+            let last_name = document.getElementById("userForm").elements[1].value;
+            let user_name = document.getElementById("userForm").elements[2].value;
+            alert("here");
+            if (user_name == null) {
+                
+                return
+            }
+           
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "/user/create", true)
+            xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    alert(xhttp.responseText);
+                }
+            }
+            let json = JSON.stringify({
+                first_name: firstName,
+                last_name: lastName,
+                user_name: userName,
+                email: email,
+                password: password
+            });
+            xhttp.send(json);
+            //location.reload();
+        } 
+
+
     </script>
 </head>
 
 <body>
-     <!---onload="getPosts()" <div data-ng-app="Blogg">
-    <script type="text/javascript">
-            var app = angular.module('Blogg', []) /*module is afunction and the result 
-            of this function is a angular app "Blogg" and it is saved to the variable "app"*/
-            app.controller = ('BloggCtrl', function ($scope) {
-                $scope.bloggposts = [
-                    576,
-                    77,
-                    'Meow',
-                    'Mittens',
-                    'My name is Meow',
-                    '2020-07-02 14:49:47'
-                ];
-
-            });
-            </script>-->
-        
-
         <section id="main_content">
             <h1>Välkommen till vår blogg<h1>
-
                     <h3>Skriv gärna ett blogginlägg</h3>
                     <form id="messageForm">
                         <label>Namn</label>
