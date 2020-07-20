@@ -4,16 +4,16 @@ var bodyParser = require("body-parser");
 var path = require("path");
 var bcrypt = require('bcrypt')
 var session = require('express-session')
+var MongoStore = require('connect-mongo')(session)
+var cors = require('cors')
 
 /*Skapar instans av express*/
 var app = express();
-app.use(session({
-    secret: 'work hard',
-    resave: true,
-    saveUninitialized: false
-}));
+
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
+    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.append('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
 
@@ -26,9 +26,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /*Anslut till mongoDB med mongoose */
 let mongoose = require('mongoose');
-
 const server = '127.0.0.1:27017'
 const database = 'DVGB06DB';
+const connection = mongoose.createConnection(`mongodb://${server}/${database}`)
+app.use(cors())
+app.use(session({
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+        mongooseConnection: connection
+    })
+}));
+
+
 
 function getCurrentDate() {
     let date_obj = new Date();
@@ -47,17 +58,6 @@ function getCurrentDate() {
 
     //date & time in YYYY-MM-DD HH:MM:SS format
     return year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
-}
-
-function mongoConnect(serverAddress, databaseName) {
-
-    connect(`mongodb://${serverAddress}/${databaseName}`)
-        .then(() => {
-            console.log('Database connection successful')
-        })
-        .catch(err => {
-            console.error('Database connection error')
-        })
 }
 
 /*Login*/
@@ -104,38 +104,45 @@ app.post("/user/create", function (req, res) {
     mongoose.connect(`mongodb://${server}/${database}`)
         .then(() => {
             console.log('Database connection succesful')
-            var newId = 0
-            mongoose.connection.db.collection("users").find({}, { sort: { userId: -1 } }).toArray(function (err, data) {
+            mongoose.connection.db.collection("users").find({ user_name: req.body.userName }).toArray(function (err, data) {
                 if (data[0] != null) {
-                    newId = parseInt(data[0].userId) + 1
+                    console.log('Username already present');
+                    return res.send({ "message": "En användare med användarnamn " + req.body.userName + " finns redan" });
                 }
-                bcrypt.hash(req.body.password, 10)
-                    .then((val) => {
-                        let newUser = {
-                            userId: newId,
-                            first_name: req.body.firstName,
-                            last_name: req.body.lastName,
-                            user_name: req.body.userName,
-                            email: req.body.email,
-                            password: val
-                        }
-                        mongoose.connection.db.collection("users").insertOne(newUser, function (err, res) {
-                            if (err) throw err;
-                            console.log("1 document inserted");
-                            mongoose.disconnect();
+                mongoose.connection.db.collection("users").find({}, { sort: { userId: -1 } }).toArray(function (err, data) {
+                    var newId = 0
+                    if (data[0] != null) {
+                        newId = parseInt(data[0].userId) + 1
+                    }
+                    bcrypt.hash(req.body.password, 10)
+                        .then((val) => {
+                            let newUser = {
+                                userId: newId,
+                                first_name: req.body.firstName,
+                                last_name: req.body.lastName,
+                                user_name: req.body.userName,
+                                email: req.body.email,
+                                password: val
+                            }
+                            res.send({ "message": "Lägger till användare" });
+                            mongoose.connection.db.collection("users").insertOne(newUser,() => {
+                                console.log("1 document inserted");
+                                mongoose.disconnect();
+                            })
                         })
-                    })
-                    .catch(err => {
-                        console.error('Hashing error')
-                    })
+                        .catch(err => {
+                            console.error('Hashing error')
+                            return res.send({ "message": "Fel vid registrering av användare" });
+                        })
+                })
             })
         })
 
         .catch(err => {
             console.error('Database connection error')
         })
-    return res.send({ "message": "Lägger till användare" });
 });
+
 
 /*Hämtar användare*/
 app.get("/user/get", function (req, res) {
