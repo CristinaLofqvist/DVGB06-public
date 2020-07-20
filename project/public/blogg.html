@@ -86,7 +86,6 @@
             let title = document.getElementById("messageForm").elements[1].value;
             let content = document.getElementById("messageForm").elements[2].value;
             //let date = document.getElementById("postDate").value;
-            alert("here")
             if (user_name == null) {
                 
                 return
@@ -110,35 +109,7 @@
             //location.reload();
         }
 
-        /*Tar värdet från input elementet i form*/
-        function addUser() {
-            let first_name = document.getElementById("userForm").elements[0].value;
-            let last_name = document.getElementById("userForm").elements[1].value;
-            let user_name = document.getElementById("userForm").elements[2].value;
-            alert("here");
-            if (user_name == null) {
-                
-                return
-            }
-           
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "/user/create", true)
-            xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-            xhttp.onreadystatechange = function () {
-                if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    alert(xhttp.responseText);
-                }
-            }
-            let json = JSON.stringify({
-                first_name: firstName,
-                last_name: lastName,
-                user_name: userName,
-                email: email,
-                password: password
-            });
-            xhttp.send(json);
-            //location.reload();
-        } 
+
 
 
     </script>
@@ -146,8 +117,18 @@
 
 <body>
         <section id="main_content">
-            <h1>Välkommen till vår blogg<h1>
-                    <h3>Skriv gärna ett blogginlägg</h3>
+            <h1>Välkommen till vår bloggportal<h1>
+                <link rel="register" href="register.html">
+                <h3>Logga in:</h3>
+                <form>
+                    <label>Användarnamn:</label>
+                    <input id="username" type="text" name="author" class="inputArea" placeholder="Ditt användarnamn...">
+                    <br>
+                    <label>Lösenord:</label>
+                    <input id="password" type="text" name="author" class="inputArea" placeholder="Ditt lösenord..."></inpuid>
+                </form>
+
+                    <h2>Skriv gärna ett blogginlägg</h2>
                     <form id="messageForm">
                         <label>Namn</label>
                         <input id="username" type="text" name="author" class="inputArea" placeholder="Ditt namn...">
