@@ -60,24 +60,32 @@ function getCurrentDate() {
     return year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
 }
 
+app.get("/user/loggedin", (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).send({ "message": "användare inte inloggad" });
+    }
+    return res.status(200).send({ "message": "användare innloggad" }); 
+})
+
 /*Login*/
-app.post("/user/login", function (req, res) {
+app.post("/user/login", (req, res) => {
     mongoose.connect(`mongodb://${server}/${database}`)
         .then(() => {
             console.log('Database connection succesful')
-            mongoose.connection.db.collection("users").find({ user_name: req.body.userName }).toArray(function (err, data) {
+            mongoose.connection.db.collection("users").find({ user_name: req.body.cred.userName }).toArray((err, data) => {
                 if (data[0] == null) {
-                    return
+                    console.log("Authentication failed")
+                    return res.status(401).send({ "message": "Inloggning misslyckades" });
                 }
                 var password_form_database = data[0].password
                 var _id_from_database = data[0]._id
-                bcrypt.compare(req.body.password, password_form_database, function (err, result) {
+                bcrypt.compare(req.body.cred.password, password_form_database, (err, result) => {
                     if (result === true) {
                         req.session.userId = _id_from_database
-                        return res.send({ "message": "Inloggning lyckades" });
+                        return res.status(200).send({ "message": "Inloggning lyckades" });
                     } else {
                         console.log("Authentication failed")
-                        return res.send({ "message": "Inloggning misslyckades" });
+                        return res.status(401).send({ "message": "Inloggning misslyckades" });
                     }
                 })
             })
@@ -87,29 +95,29 @@ app.post("/user/login", function (req, res) {
         })
 });
 /*Logout*/
-app.post("/user/logout", function (req, res) {
+app.post("/user/logout", (req, res) => {
     if (req.session) {
         // delete session object
-        req.session.destroy(function (err) {
+        req.session.destroy((err) => {
             if (err) {
                 console.log("Logout failed")
             } else {
-                return res.redirect('/');
+                return res.status(200).send({ "message": "Utloggning lyckades" });
             }
         });
     }
 });
 /*Skapar användare*/
-app.post("/user/create", function (req, res) {
+app.post("/user/create", (req, res) => {
     mongoose.connect(`mongodb://${server}/${database}`)
         .then(() => {
             console.log('Database connection succesful')
-            mongoose.connection.db.collection("users").find({ user_name: req.body.userName }).toArray(function (err, data) {
+            mongoose.connection.db.collection("users").find({ user_name: req.body.userName }).toArray((err, data) => {
                 if (data[0] != null) {
                     console.log('Username already present');
-                    return res.send({ "message": "En användare med användarnamn " + req.body.userName + " finns redan" });
+                    return res.status(403).send({ "message": "En användare med användarnamn " + req.body.userName + " finns redan" });
                 }
-                mongoose.connection.db.collection("users").find({}, { sort: { userId: -1 } }).toArray(function (err, data) {
+                mongoose.connection.db.collection("users").find({}, { sort: { userId: -1 } }).toArray((err, data) => {
                     var newId = 0
                     if (data[0] != null) {
                         newId = parseInt(data[0].userId) + 1
@@ -124,15 +132,14 @@ app.post("/user/create", function (req, res) {
                                 email: req.body.email,
                                 password: val
                             }
-                            res.send({ "message": "Lägger till användare" });
+                            res.status(201).send({ "message": "Lägger till användare" });
                             mongoose.connection.db.collection("users").insertOne(newUser,() => {
                                 console.log("1 document inserted");
-                                mongoose.disconnect();
                             })
                         })
                         .catch(err => {
                             console.error('Hashing error')
-                            return res.send({ "message": "Fel vid registrering av användare" });
+                            return res.status(500).send({ "message": "Fel vid registrering av användare" });
                         })
                 })
             })
@@ -145,15 +152,15 @@ app.post("/user/create", function (req, res) {
 
 
 /*Hämtar användare*/
-app.get("/user/get", function (req, res) {
+app.get("/user/get", (req, res) => {
 });
 
 /*Hämtar användar id*/
-app.get("/user/get/:id", function (req, res) {
+app.get("/user/get/:id", (req, res) => {
 });
 
 /*Läger till bloggpost*/
-app.post("/blogg/posts/add", function (req, res) {
+app.post("/blogg/posts/add", (req, res) => {
     mongoose.connect(`mongodb://${server}/${database}`)
         .then(() => {
             console.log('Database connection succesful')
@@ -161,7 +168,7 @@ app.post("/blogg/posts/add", function (req, res) {
             (find({} räknat baklänges ifrån omvänd ordning och plocka ut ett värde vilket
                  är det första som kommer vara det sista eftersom det sortera omvänd ordning.
                  Detta gör jag för att inte få en undefined variabel på postID i objektet newPpost*/
-            mongoose.connection.db.collection("posts").find({}, { sort: { postId: -1 } }).limit(1).toArray(function (err, data) {
+            mongoose.connection.db.collection("posts").find({}, { sort: { postId: -1 } }).limit(1).toArray((err, data) => {
                 let newId = 0;
                 if (data[0] != null) {
                     newId = parseInt(data[0].postId) + 1
@@ -174,27 +181,26 @@ app.post("/blogg/posts/add", function (req, res) {
                     content: req.body.content,
                     postDate: postDate
                 }
-                mongoose.connection.db.collection("posts").insertOne(newPost, function (err, res) {
+                mongoose.connection.db.collection("posts").insertOne(newPost, (err, res) => {
                     if (err) throw err;
                     console.log("1 document inserted");
-                    mongoose.disconnect();
                 })
             })
         })
         .catch(err => {
             console.error('Database conection error')
         })
-    return res.send({ "message": "Lägger till bloggpost" });
+    return res.status(201).send({ "message": "Lägger till bloggpost" });
 });
 
 
 /*Tar bort bloggpost*/
-app.delete("/blogg/posts/delete/:id", function (req, res) {
+app.delete("/blogg/posts/delete/:id", (req, res) => {
     var deleteId = parseInt(req.params.id);
     mongoose.connect(`mongodb:${server}/${database}`)
         .then(() => {
             console.log('Database connection successful')
-            mongoose.connection.db.collection("posts").deleteMany({ postId: deleteId }, function (err, _) {
+            mongoose.connection.db.collection("posts").deleteMany({ postId: deleteId }, (err, _) => {
                 if (err) {
                     console.log(err);
                 }
@@ -204,19 +210,18 @@ app.delete("/blogg/posts/delete/:id", function (req, res) {
         .catch(err => {
             console.error('Database conection error')
         })
-    return res.send({ "message": "Raderar bloggpost med id " + deleteId })
+    return res.status(200).send({ "message": "Raderar bloggpost med id " + deleteId })
 });
 
 //hämtar alla blogginlägg 
-app.get("/blogg/posts/get", function (req, res) {
+app.get("/blogg/posts/get", (req, res) => {
     /*Connect to mongoDB*/
     mongoose.connect(`mongodb://${server}/${database}`)
         .then(() => {
             console.log('Database connection sucessful')
-            mongoose.connection.db.collection("posts").find().toArray(function (err, data) {
+            mongoose.connection.db.collection("posts").find().toArray((err, data) => {
                 console.log(data)
-                mongoose.disconnect();
-                return res.send(data)
+                return res.status(200).send(data)
             })
         })
         .catch(err => {
@@ -225,20 +230,20 @@ app.get("/blogg/posts/get", function (req, res) {
 });
 
 /*Hämtar produkter*/
-app.get("/products/get", function (req, res) {
+app.get("/products/get", (req, res) => {
 });
 
 /*Hämtar vald produkt*/
-app.get("/products/get/:id", function (req, res) {
+app.get("/products/get/:id", (req, res) => {
 });
 
-app.get("/products/get/:catId", function (req, res) {
+app.get("/products/get/:catId", (req, res) => {
 });
 
-app.post("/order/place", function (req, res) {
+app.post("/order/place", (req, res) => {
 });
 
-app.get("/order/get/:id", function (req, res) {
+app.get("/order/get/:id", (req, res) => {
 });
 
 
@@ -246,6 +251,6 @@ app.get("/order/get/:id", function (req, res) {
 var port = 3000;
 
 /*Startar servern*/
-app.listen(port, function () {
+app.listen(port, () => {
     console.log("Servern är startad på port " + port);
 });
