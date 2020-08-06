@@ -11,6 +11,8 @@
 @import "flexboxtempaltes.css";
 /*Importing css sheet with flexbox css*/
 
+@import "sassystyles.css";
+
 /*Sätter typsnit på alla text element */
 
 h1, h2, li {
@@ -29,17 +31,19 @@ h3, h4, h5, h6, a, p {
 
 nav a {
     font-family: 'Lora', serif;
-    color:black;
+    color: black;
     font-size: 150%;
     padding: 1em;
 }
+
 .searchimg {
     max-width: 45px;
     max-height: 45px;
 }
+
 .bagimg {
     max-width: 45px;
-    max-height: 45px; 
+    max-height: 45px;
 }
 
 /*flexgrid structure */
@@ -81,48 +85,63 @@ body {
     perspective: 1px;
     transform-style: preserve-3d;
     height: 100%;
-    width:100%;
+    width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
 .footerPitch {
-    width:14em;
+    width: 14em;
     margin-left: 5em;
     margin-top: 2.5em;
 }
+
 .footerPitch p {
     line-height: 150%;
     font-size: 80%;
 }
+
 .footericons {
     margin-right: 15em;
     margin-top: 2.5em;
 }
+
 .socialmedia h2 {
     margin-left: 4em;
 }
 
-.socialmedia img{
-    padding:1.5em;
-    width:45px;
-    height:45px;
-}
-.copyright img{
-    margin-left:0.5em;
-    width:25px;
-    height:25px;
-}
-.copyright p {
-    font-size: 70%;
-    margin:10px;
+.socialmedia img {
+    padding: 1.5em;
+    width: 45px;
+    height: 45px;
 }
 
-#mainmessage{
+.copyright img {
+    margin-left: 0.5em;
+    width: 25px;
+    height: 25px;
+}
+#recycle-article {
+    padding:3em;
+}
+.middlebody-links img {
+    margin-bottom: 2.5em;
+}
+.first_heading {
+    margin-top: 3em;
+}
+
+.copyright p {
+    font-size: 70%;
+    margin: 10px;
+}
+
+#mainmessage {
     margin: 4em;
     font-size: 100%;
 }
 
-#mainmessage p, #mainmessage img{
+#mainmessage p, #mainmessage img {
     margin-top: 5em;
 }
 
@@ -130,7 +149,11 @@ body {
     margin-top: 2em;
     margin-left: 2em;
     font-size: 150%;
-    color:whitesmoke;
+    color: whitesmoke;
+}
+
+.middlebody-links {
+    padding: 5em;
 }
 
 .formbutton {
@@ -158,10 +181,13 @@ label {
 .w-100 {
     width: 100%;
 }
+
 .h-100 {
     height: 100%;
 }
+
 /*parallax*/
+
 .parallax {
     /* The image used */
     background-image: url(../Imagesmodified/laura-vinck-Hyu76loQLdk-unsplash.png);
@@ -170,8 +196,9 @@ label {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height:40em;
+    height: 40em;
 }
+
 .parallax2 {
     /* The image used */
     background-image: url(../Imagesmodified/tobias-tullius-PXXtq6bp6cs-unsplash.jpg);
@@ -180,7 +207,7 @@ label {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height:40em;
+    height: 40em;
 }
 
 .parallax3 {
@@ -191,7 +218,7 @@ label {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height:40em;
+    height: 40em;
 }
 
 .parallax4 {
@@ -202,7 +229,7 @@ label {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height:40em;
+    height: 40em;
 }
 
 .parallax5 {
@@ -213,8 +240,9 @@ label {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height:40em;
+    height: 40em;
 }
+
 .parallax6 {
     /* The image used */
     background-image: url(../Imagesmodified/john-towner-3Kv48NS4WUU-unsplash.jpg);
@@ -223,8 +251,9 @@ label {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height:40em;
+    height: 40em;
 }
+
 .parallax7 {
     /* The image used */
     background-image: url(../Imagesmodified/matthew-smith-jpg.jpg);
@@ -233,8 +262,9 @@ label {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height:40em;
+    height: 40em;
 }
+
 .parallax8 {
     /* The image used */
     background-image: url(../Imagesmodified/gustav-gullstrand-d6kSvT2xZQo-unsplash.jpg);
@@ -243,8 +273,9 @@ label {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height:40em;
+    height: 40em;
 }
+
 /*End of parallax*/
 
 #login-button {
@@ -256,31 +287,31 @@ label {
 }
 
 #first_pitch {
-    width:60%;
+    width: 60%;
     background-color: #E8E4E1;
     border-radius: 50px 10px;
-    padding:20px;
+    padding: 20px;
     margin-top: 1.8em;
     margin-bottom: 1.8em;
-    color:#26466C;
-    
+    color: #26466C;
 }
+
 #first_pitch p {
-    width:80%;
+    width: 80%;
 }
 
 #second_pitch {
-    width:60%;
+    width: 60%;
     background-color: #F1E3CB;
     border-radius: 50px 10px;
-    padding:20px;
+    padding: 20px;
     margin-top: 1.8em;
     margin-bottom: 1.8em;
-    color:#26466C;
-    
+    color: #26466C;
 }
+
 #second_pitch p {
-    width:80%;
+    width: 80%;
 }
 
 .firstHeading h1 {
@@ -325,7 +356,8 @@ label {
     /* Enable scroll if needed */
     background-color: rgb(0, 0, 0);
     /* fallback color */
-    background-color: rgba(0, 0, 0, 0.800); /*Last arg is transparesy*/
+    background-color: rgba(0, 0, 0, 0.800);
+    /*Last arg is transparesy*/
     /* Black w/ opacity */
     padding-top: 60px;
 }
@@ -335,6 +367,7 @@ label {
     flex-direction: column;
     align-items: center;
 }
+
 /* Modal Content/Box */
 
 .modal-content {
@@ -421,7 +454,7 @@ label {
 footer {
     width: 100%;
     background-color: #A0C1B8;
-    color:#26466C;
+    color: #26466C;
 }
 
 /* Sätter style på elementet input*/
@@ -446,23 +479,34 @@ input:hover {
 
 a {
     text-decoration: none;
-}
-
-a:visited {
-    color: whitesmoke;
+    color: #85894A;
 }
 
 a:active {
-    background-color: #527a7a;
+    background-color: #879FA9;
     border-radius: 5px;
 }
 
+.climate_nav a {
+    color: #E8E4E1;
+}
+
+#emission img, #emission a {
+    padding: 2em;
+}
+
+/*Special button style*/
+
+
+
+/*end of special button style*/
+
 a:hover {
-    color: #738c8c;
+    color: #4A5D57;
 }
 
 .bagimg, .searchimg, .nav {
-    padding:2em;
+    padding: 2em;
 }
 
 /* Sätter style på alla källor med classen source*/
@@ -472,12 +516,10 @@ a:hover {
     color: #738c8c;
 }
 
-
 .lowbody, .middlebody {
     margin-left: 10px;
     margin-right: 10px;
 }
-
 
 /* Ökar storleken på ramen runt alla th element */
 
@@ -500,10 +542,6 @@ a:hover {
     background-image: url(../images/daniil-silantev-cKT2WBaIXVU-unsplash.jpg);
 }
 
-.middlebody article {
-    background-color: #d9d9d9;
-}
-
 /* style för minsta webbläsarfönster/mobil användare */
 
 @media only screen and (max-width:500px) {
@@ -515,7 +553,6 @@ a:hover {
         text-align: center;
         /*centrerar texten på elementet input med id lowbody*/
     }
-    
     #header-nav a {
         display: block;
         /*Visar elemet a med id header-nav som ett block, tar upp hela bredden*/
@@ -553,7 +590,7 @@ a:hover {
         justify-content: center;
         align-items: center;
     }
-    #climate-lower-body {
+    .climate-lower-body {
         text-align: center;
     }
     #reuse-lowerbody-link-div {
@@ -727,7 +764,6 @@ a:hover {
     .left-footer div {
         padding: 20px;
     }
-
     .lowerbody {
         text-align: center;
         display: flex;
