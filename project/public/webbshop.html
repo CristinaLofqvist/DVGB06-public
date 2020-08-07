@@ -4,15 +4,18 @@
  * Webbsite
  * Written by Cristina Löfqvist/ Karlstad University in June-2020.
  *********************************************************************-->
- <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" type="text/css" href="./css/index.css">
-        <link rel="stylesheet" type="text/css" href="./css/flexboxtempaltes.css">
-        <link rel="stylesheet" type="text/css" href="./css/normalize.css">
-        <title>Document</title>
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <link rel="stylesheet" type="text/css" href="./css/flexboxtempaltes.css">
+    <link rel="stylesheet" type="text/css" href="./css/normalize.css">
+    <title>Document</title>
+</head>
+
+<body>
     <header class="parallax8">
         <div class="flexbox flex-direction-column flex-justify-space-between h-100">
             <div class="firstHeading flexbox flex-direction-row flex-justify-space-between w-100">
@@ -31,7 +34,7 @@
                 <a href="./lifehacks.html">Life Hacks</a>
                 <a href="./blogg.html">Blogg</a>
                 <a href="./webbshop.html">Webbutik</a>
-    
+
             </nav>
         </div>
     </header>
@@ -41,6 +44,8 @@
                 <img src="./Imagesmodified/annie-spratt-cxAZxTuL7Sk-unsplash.jpg" alt="Soap">
                 <h2>Zero waste tvål</h2>
                 <p>Härlig shampotvål som finns i flera färer och dofter.</p>
+                <button
+                    onclick="addToBasket(this, '001','Vara #1', 100, 'annie-spratt-cxAZxTuL7Sk-unsplash.jpg', true)">Köp</button>
             </article>
             <article>
                 <img src="./Imagesmodified/toothbrush.jpg" alt="Toothbrush">
@@ -48,11 +53,13 @@
                 <p>Runt 3,2 miljarder tandborstar i plast konsumeras varje år.
                     Det är plast som är svårt att bryta ner och ofta i slutendan
                     hamnar i sjöar och hav. Var med och ändra den trenden. </p>
+                <button onclick="addToBasket(this, '002','Vara #2', 100, 'toothbrush.jpg', true)">Köp</button>
             </article>
             <article>
                 <img src="./Imagesmodified/IMG_6121.jpg" alt="wire twists">
                 <h2>Påsklämmor</h2>
                 <p>Plastfria påklämmor i gediget stål</p>
+                <button onclick="addToBasket(this, '003','Vara #3', 100, 'IMG_6121.jpg', true)">Köp</button>
             </article>
         </div>
         <!--end of class="row"-->
@@ -61,16 +68,19 @@
                 <img src="./Imagesmodified/IMG_6123.jpg" alt="reusable bag">
                 <h2>Återanvändbar bärkasse</h2>
                 <p>Enkle att ha med och passar fint att placera grönsaker i.</p>
+                <button onclick="addToBasket(this, '004','Vara #4', 100, 'IMG_6123.jpg', true)">Köp</button>
             </article>
             <article>
                 <img src="./Imagesmodified/IMG_6096.jpg" alt="funnel">
                 <h2>Emaljerad tratt</h2>
                 <p>plastfri tratt</p>
+                <button onclick="addToBasket(this, '005','Vara #5', 100, 'IMG_6096.jpg', true)">Köp</button>
             </article>
             <article>
                 <img src="./Imagesmodified/IMG_6119.jpg" alt="degradable freezer bag">
                 <h2>Nedbrytningsbara fryspåsar</h2>
                 <p>Fantastiska påsar som går att kompostera.</p>
+                <button onclick="addToBasket(this, '006','Vara #6', 100, 'IMG_6119.jpg', true)">Köp</button>
             </article>
         </div>
         <!--end of class="row"-->
@@ -79,12 +89,23 @@
                 <img src="./Imagesmodified/IMG_6120.jpg" alt="toothpic made from corn">
                 <h2>Tandpetare</h2>
                 <p>Dessa praktiska tandpetare är gjorda av majsstärkelse</p>
+                <button onclick="addToBasket(this, '007','Vara #7', 100, 'IMG_6120.jpg', true)">Köp</button>
             </article>
         </div>
         <!--end of class="row"-->
 
     </div>
     <!--end of product display div-->
+    <div id="right">
+        <h2>Varukorg</h2>
+        <div id="basket-holder">
+            <ul id="basket">
+                <li>
+                    Varukorgen är tom
+                </li>
+            </ul>
+        </div>
+    </div>
     <footer>
         <div class="footerPitch">
             <h2>Vårt mål!</h2>
@@ -110,6 +131,7 @@
             </div>
         </div>
     </footer>
+    <script src=index.js></script>
 </body>
 
 </html>

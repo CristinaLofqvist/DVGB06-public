@@ -35,7 +35,7 @@
      font-size: 150%;
      padding: 1em;
  }
- 
+
  .searchimg {
      max-width: 45px;
      max-height: 45px;
@@ -541,7 +541,58 @@
  #mainpage {
      background-image: url(../images/daniil-silantev-cKT2WBaIXVU-unsplash.jpg);
  }
+ .reuse_middlebody p {
+    max-width: 200px;
+ }
  
+ .reuse_middlebody article {
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+ }
+ .self-sustain-article-container article {
+    padding: 20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
+.self-sustain-article-container article p {
+    text-align: left;
+    padding: 10px;
+}
+.self-sustain-article-container article h2 {
+    border-bottom: 2px solid #738c8c;
+    border-top: 1px solid #999;
+}
+
+#BloggHeadingI {
+    font-size: 150%;
+    text-transform: uppercase;
+    margin-top:3em;
+    text-align: center;
+}
+
+#BloggHeadingII {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 150%;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#post-area {
+    border-top-style: dotted;
+    min-width: 20em;
+    margin-top: 2em;
+    }
+
+.lowerbody{
+    padding:5em;
+}
+#login-button{
+    margin-top: 3em;
+}
+
  /* style för minsta webbläsarfönster/mobil användare */
  
  @media only screen and (max-width:500px) {
@@ -583,6 +634,17 @@
          justify-content: center;
          align-items: center;
      }
+
+     .self-sustain-article-container {
+        display: flex;
+        flex-direction: column;
+     }
+
+     .self-sustain-article-container article p {
+         font-size: 70%;
+         min-width:200px;
+        }
+
      .lowerbody {
          text-align: center;
          display: flex;
@@ -599,6 +661,12 @@
          flex-direction: column;
          justify-content: center;
          align-items: center;
+     }
+     .reuse_middlebody {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding:3em;
      }
      .middlebody-links {
          text-align: center;
@@ -654,6 +722,21 @@
      }
      #climate-lower-body {
          text-align: center;
+     }
+     .self-sustain-article-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+     }
+     .self-sustain-article-container article p {
+        font-size: 80%;
+        width:300px;
+       }
+     .reuse_middlebody {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding:3em;
      }
      #reuse-lowerbody-link-div {
          text-align: center;
@@ -726,13 +809,6 @@
      #header-nav {
          text-align: center;
      }
-     .flexbox-content {
-         display: flex;
-         flex-direction: row;
-         justify-content: space-between;
-         width: 100%;
-         margin: 0 auto;
-     }
      #tomato-hands {
          margin-top: 20px;
      }
@@ -771,6 +847,12 @@
          justify-content: center;
          align-items: center;
      }
+
+     .self-sustain-article-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+     }
      /* placerar elementen i klassen side by side bredvid varandra*/
      .side-by-side {
          display: flex;
@@ -780,18 +862,13 @@
          display: flex;
          justify-content: center;
      }
-     #self-sustain-article-container article {
-         padding: 20px;
-         flex: 1 1 0px;
-         width: 0;
-     }
-     #self-sustain-article-container article p {
-         text-align: left;
-         padding: 10px;
-     }
-     #self-sustain-article-container article h2 {
-         border-bottom: 2px solid #738c8c;
-         border-top: 1px solid #999;
+
+     .reuse_middlebody {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding:3em;
      }
      .middlebody-links, .lowerbody-links {
          display: flex;
@@ -810,6 +887,9 @@
          height: 500px;
          width: 400px;
          margin-left: 20px;
+     }
+     .self-sustain-article-container article p {
+         width:400px;
      }
      #recycle-article {
          width: 45%;
@@ -899,4 +979,221 @@
         transform: scaleY(0);
     }
     
+}
+
+// Variables
+
+$black: #4c4c4c;
+$white: #eaeaea;
+$gray: #808080;
+
+$text-arrow-space: 16px;
+$shaft-width: 1px;
+$newshaft-width: 64px;
+$shaft-thickness: 1px;
+$arrow-head-width: 8px;
+$arrow-head-thickness: $shaft-thickness;
+
+
+
+// Base
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  background: #ffffff;
+  height: 100%;
+  font-family: 'Helvetica Neue LT W01_41488878';
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+ul {
+  li {
+    margin: 0 0 24px;
+  }
+}
+
+
+
+// The Arrow
+
+.the-arrow {
+  width: $shaft-width;
+  transition: all 0.2s;
+ 
+  &.-left {
+    position: absolute;
+    top: 60%;
+    left: 0;
+
+    > .shaft {
+      width: 0;
+      background-color: $black;
+      
+      &:before,
+      &:after {
+        width: 0;
+        background-color: $black;
+      }
+
+      &:before {
+        transform: rotate(0);
+      }
+
+      &:after {
+        transform: rotate(0);
+      }
+    }
+  }
+  
+  &.-right {
+    top: 3px;
+    
+    > .shaft {
+      width: $shaft-width;
+      transition-delay: 0.2s;
+
+      &:before,
+      &:after { 
+        width: $arrow-head-width;
+        transition-delay: 0.3s;
+        transition: all 0.5s;
+      }
+      
+      &:before {
+        transform: rotate(40deg);
+      }
+      
+      &:after {
+        transform: rotate(-40deg);
+      }
+    }
+  }
+
+  > .shaft {
+    background-color: $black;
+    display: block;
+    height: $shaft-thickness;
+    position: relative;
+    transition: all 0.2s;
+    transition-delay: 0;
+    will-change: transform;
+
+    &:before,
+    &:after {
+      background-color: $black;
+      content: '';
+      display: block;
+      height: $arrow-head-thickness;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transition: all 0.2s;
+      transition-delay: 0;
+    }
+
+    &:before {
+      transform-origin: top right;
+    }
+
+    &:after {
+      transform-origin: bottom right;
+    }
+  }
+}
+
+
+
+// Animated Arrow Button
+
+.animated-arrow {
+  display: inline-block;
+  color: $black;
+  font-size: 1.25em;
+  font-style: italic;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.2s;
+  
+  &:hover {
+    color: $gray;
+    
+    > .the-arrow.-left {
+      > .shaft {
+        width: $newshaft-width;
+        transition-delay: 0.1s;
+        background-color: $gray;
+
+        &:before,
+        &:after {
+          width: $arrow-head-width;
+          transition-delay: 0.1s;
+          background-color: $gray;
+        }
+
+        &:before {
+          transform: rotate(40deg);
+        }
+
+        &:after {
+          transform: rotate(-40deg);
+        }
+      }
+    }
+    
+    > .main {
+      transform: translateX($shaft-width + $text-arrow-space);
+      transform: translateX($newshaft-width + $text-arrow-space);
+      
+      > .the-arrow.-right {
+        > .shaft {
+          width: 0;
+          transform: translateX(200%);
+          transition-delay: 0;
+          
+          &:before,
+          &:after {
+            width: 0;
+            transition-delay: 0;
+            transition: all 0.1s;
+          }
+
+          &:before {
+            transform: rotate(0);
+          }
+
+          &:after {
+            transform: rotate(0);
+          }
+        }
+      }
+    }
+  }
+  
+  > .main {
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+    
+    > .text {
+      margin: 0 $text-arrow-space 0 0;
+      line-height: 1;
+    }
+    
+    > .the-arrow {
+      position: relative;
+    }
+  }
 }
