@@ -17,7 +17,7 @@ function getProduct(id) {
             productTextDivEl.innerHTML =
                 "<h2>" + product[0].name + "</h2>" +
                 "<p>" + product[0].description + "</p>" +
-                "<p>" + product[0].price + "</p>"
+                "<p>" + product[0].price + " kr</p>"
             var buttonContainerEl = document.createElement("div")
             buttonContainerEl.className= "button-container"
             var buttonEl = document.createElement("button")

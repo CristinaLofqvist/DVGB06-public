@@ -265,6 +265,7 @@ app.get("/products/get", (req, res) => {
             console.log('Database connection sucessful')
             mongoose.connection.db.collection("products").find().toArray((err, data) => {
                 for (let i = 0; i < data.length; i++) {
+                    /* If qty of product is 0 remove it from the data array */
                     if (data[i].qty < 1) {
                         data.splice(i, 1)
                     }
@@ -330,7 +331,7 @@ app.post("/order/place", (req, res) => {
     message += "Address: " + req.body.address + "\n"
 
     for (let i = 0; i < req.body.items.length; i++) {
-        message += "product: " + req.body.items[i].name + " qty: " + req.body.items[i].nums + "\n"
+        message += "product: " + req.body.items[i].itemName + " qty: " + req.body.items[i].nums + "\n"
     }
     console.log(message)
     let mailOptions = {

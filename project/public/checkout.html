@@ -43,38 +43,37 @@
 </head>
 
 <body onload="onLoad()" onresize="toggleHidden('header-nav', 800, 'burger')">
-    <header class="parallax8">
-        <div class="flexbox flex-direction-column flex-align-i-center flex-justify-space-between h-100">
-            <div class="firstHeading flexbox flex-direction-row flex-justify-space-between w-100">
-                <a href="index.html"><img src="./Imagesmodified/Logo4.png" alt="Logo" class="logo" id="logo"></a>
-
-                <div class="flexbox flex-direction-row bag-and-search flex-align-i-center flex-justify-space-evenly">
-
-                    <div class="bag-container">
-                        <a href="checkout.html"><img src="./Imagesmodified/icons8-messenger-bag-50.png" alt="carticon"
-                                class="bagimg" onload="showSmallShoppingcart()"></a>
-                        <a class="small-shoppingcart-container" href="checkout.html">
-                            <div id="small-shoppingcart"></div>
-                        </a>
+        <header class="parallax8 flexbox flex-direction-column flex-align-i-center">
+                <div class="flexbox flex-direction-column flex-align-i-center flex-justify-flex-start h-100 w-100">
+                    <div class="firstHeading flexbox flex-direction-row flex-justify-space-between w-100">
+                        <a href="index.html"><img src="./Imagesmodified/Logo4.png" alt="Logo" class="logo" id="logo"></a>
+                        <div class="flexbox flex-direction-row bag-and-search flex-align-i-center flex-justify-space-evenly">
+                            <div class="bag-container">
+                                <a href="checkout.html"><img src="./Imagesmodified/icons8-messenger-bag-50.png" alt="carticon"
+                                        class="bagimg" onload="showSmallShoppingcart()"></a>
+                                <a class="small-shoppingcart-container" href="checkout.html">
+                                    <div id="small-shoppingcart"></div>
+                                </a>
+                            </div>
+                            <div id="burger" onclick="toggleOpenBurger('burger','header-nav','flex')">
+                                <div class="burger-bun"></div>
+                                <div class="burger-bun"></div>
+                                <div class="burger-bun"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div id="burger" onclick="toggleOpenBurger('burger','header-nav','flex')">
-                        <div class="burger-bun"></div>
-                        <div class="burger-bun"></div>
-                        <div class="burger-bun"></div>
-                    </div>
+                    <h1>Kassa</h1>
+        
                 </div>
-            </div>
-            <h1>Kassa</h1>
-            <nav id="header-nav" class="show nav">
-                <a href="./climate.html">Klimatet</a>
-                <a href="./recykle.html">Återvinning</a>
-                <a href="./reuse.html">Återbruka</a>
-                <a href="./selfS.html">Självförsörjning</a>
-                <a href="./lifehacks.html">Life Hacks</a><a href="./blogg.html">Blogg</a>
-                <a href="./webbshop.html">Webbutik</a>
-            </nav>
-        </div>
-    </header>
+                <nav id="header-nav" class="show nav">
+                    <a href="./climate.html">Klimatet</a>
+                    <a href="./recykle.html">Återvinning</a>
+                    <a href="./reuse.html">Återbruka</a>
+                    <a href="./selfS.html">Självförsörjning</a>
+                    <a href="./lifehacks.html">Life Hacks</a><a href="./blogg.html">Blogg</a>
+                    <a href="./webbshop.html">Webbutik</a>
+                </nav>
+            </header>
     <div class="flexbox flex-align-i-center flex-direction-column">
         <br>
         <div id="checkout"></div>

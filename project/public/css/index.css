@@ -102,6 +102,10 @@ html {
   overflow: hidden;
 }
 
+.climate_nav a {
+  color: whitesmoke;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -495,6 +499,14 @@ a {
   color: #85894A;
 }
 
+.drop {
+  display: none;
+}
+
+.animated-arrow:hover .drop {
+  display: flex;
+}
+
 a:active {
   background-color: #879FA9;
   border-radius: 5px;
@@ -665,6 +677,7 @@ button:focus {
 
 #header-nav {
   z-index: 1000;
+  margin-bottom: 1em;
 }
 
 #productsDisplay {
@@ -836,8 +849,6 @@ button:focus {
   }
 
   .productPage img {
-    max-width: 250;
-    min-width: 250;
     padding: 5px;
   }
 
@@ -1079,8 +1090,6 @@ button:focus {
   }
 
   .productPage img {
-    max-width: 250;
-    min-width: 250;
     padding: 5px;
   }
 
@@ -1145,6 +1154,10 @@ button:focus {
  **********************************************
 */
 @media only screen and (min-width: 801px) {
+  .productPage img {
+    padding: 5px;
+  }
+
   #header-nav a {
     margin: 0.5em;
   }
@@ -1234,7 +1247,7 @@ button:focus {
   .reuse_middlebody {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     padding: 3em;
   }

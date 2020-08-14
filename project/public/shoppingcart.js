@@ -147,6 +147,7 @@ function checkoutShoppingcart(firstName, lastName, email, country, state, city, 
         xhttp.send(json);
         /*empty shopingcart*/
         emptyShoppingcart(false);
+        alert("Order mottagen")
     } else {
         alert("Det finns inga varor i din varukorg");
     }
