@@ -187,16 +187,14 @@ function addToShoppingcart(el, name, cost, image) {
 function emptyShoppingcart(conf) {
     if (conf == true) {
         if (confirm("Är du säker att du vill radera alla varor?")) {
-            localStorage.removeitem("shoppingcart");
-            shoppingcart();
-            //showSmallShoppingcart();
+            localStorage.removeitem("shoppingcart");;
+            howSmallShoppingcart();
             showCheckout();
         } else {
             return;
         }
     } else {
         localStorage.removeItem("shoppingcart");
-        shoppingcart();
         showSmallShoppingcart();
         showCheckout();
     }
