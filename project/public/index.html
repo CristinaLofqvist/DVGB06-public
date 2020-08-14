@@ -14,29 +14,41 @@
     <link rel="stylesheet" type="text/css" href="./css/flexboxtempaltes.css">
     <link rel="stylesheet" type="text/css" href="./css/normalize.css">
     <title>Document</title>
-    <script src="./main.js"></script>
+    <script src="shoppingcart.js"></script>
+    <script src="burger.js"></script>
+    <script src="main.js"></script>
 </head>
 
-<body>
+<body onload="toggleHidden('header-nav', 800, 'burger')" onresize="toggleHidden('header-nav', 800, 'burger')">
     <header class="parallax">
-        <div class="flexbox flex-direction-column flex-justify-space-between h-100">
+        <div class="flexbox flex-direction-column flex-align-i-center flex-justify-space-between h-100">
             <div class="firstHeading flexbox flex-direction-row flex-justify-space-between w-100">
-                <img src="./Imagesmodified/Logo4.png" alt="Logo" class="logo" id="logo">
-                <h1>Välkommen till planet B</h1>
-                <div class="flexbox flex-direction-row">
-                    <img src="./Imagesmodified/search2.png" alt="serchicon" class="searchimg">
-                    <img src="./Imagesmodified/icons8-messenger-bag-50.png" alt="carticon" class="bagimg">
+                <a href="index.html"><img src="./Imagesmodified/Logo4.png" alt="Logo" class="logo" id="logo"></a>
+
+                <div class="flexbox flex-direction-row bag-and-search flex-align-i-center flex-justify-space-evenly">
+                     
+                    <div class="bag-container">
+                        <a href="checkout.html"><img src="./Imagesmodified/icons8-messenger-bag-50.png" alt="carticon"
+                                class="bagimg" onload="showSmallShoppingcart()"></a>
+                        <a class="small-shoppingcart-container" href="checkout.html">
+                            <div id="small-shoppingcart"></div>
+                        </a>
+                    </div>
+                    <div id="burger" onclick="toggleOpenBurger('burger','header-nav','flex')">
+                        <div class="burger-bun"></div>
+                        <div class="burger-bun"></div>
+                        <div class="burger-bun"></div>
+                    </div>
                 </div>
             </div>
-            <nav id="header-nav" class="hidden nav">
+            <h1>Planet B</h1>
+            <nav id="header-nav" class="show nav">
                 <a href="./climate.html">Klimatet</a>
                 <a href="./recykle.html">Återvinning</a>
                 <a href="./reuse.html">Återbruka</a>
                 <a href="./selfS.html">Självförsörjning</a>
-                <a href="./lifehacks.html">Life Hacks</a>
-                <a href="./blogg.html">Blogg</a>
+                <a href="./lifehacks.html">Life Hacks</a><a href="./blogg.html">Blogg</a>
                 <a href="./webbshop.html">Webbutik</a>
-
             </nav>
         </div>
     </header>

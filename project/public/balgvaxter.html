@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="sv">
+
 <!--*********************************************************************
- * Webbsite
+ * Webbste
  * Written by Cristina Löfqvist/ Karlstad University in June-2020.
  *********************************************************************-->
 
@@ -17,8 +18,8 @@
     <script src="burger.js"></script>
 </head>
 
-<body onload="toggleHidden('header-nav', 800, 'burger')" onresize="toggleHidden('header-nav', 800, 'burger')">
-    <header class="parallax2">
+<body onresize="toggleHidden('header-nav', 800, 'burger')" onload="toggleHidden('header-nav', 800, 'burger')">
+    <header class="parallax">
         <div class="flexbox flex-direction-column flex-align-i-center flex-justify-space-between h-100">
             <div class="firstHeading flexbox flex-direction-row flex-justify-space-between w-100">
                 <a href="index.html"><img src="./Imagesmodified/Logo4.png" alt="Logo" class="logo" id="logo"></a>
@@ -39,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <h1>Vinst</h1>
+            <h1>Balgväxter</h1>
             <nav id="header-nav" class="show nav">
                 <a href="./climate.html">Klimatet</a>
                 <a href="./recykle.html">Återvinning</a>
@@ -51,34 +52,46 @@
         </div>
     </header>
     <div class="wrapper">
-        <div class="middlebody">
-            <img src="./Imagesmodified/icons8-medal-100.png" width="50" height="50" alt="Ikon bild av en medalj" />
-            <h1>Vad är vinsten?</h1>
+        <div class="lowbody">
+            <div class="flexbox-content">
+                <article>
+                    <h2>Sockerärta</h2>
+                    <ul>
+                        <li>Planteras i april/maj</li>
+                        <li>planteringsmått. 20-25 cm mellan plantorna och 60-70 cm mellan raderna</li>
+                        <li>Trivs bäst i djup , lätt sandjord.</li>
+                        <li>planterings djup: ca 5 cm</li>
+                        <li>Behöver växtstöd</li>
+                    </ul>
+                </article>
+                <article>
 
-            <h3>I Sverige använder vi ca 17 kg plastförpackningar per person och år. Det blir 155 000 ton! När det
-                gäller
-                glas
-                återvinns så mycket som 95% av det som säljs. En tredjedel av alla pappersförpackningar som säljs i
-                matbutiker
-                är tillverkade av återvunnet papper. </h3>
-            <ul>
-                <li>Idag återvinns hårdplast i Sverige ca 5-7 gånger. Detta bidrar till minskad import av dyr olja
-                    vilket
-                    plastproduktionen kräver. </li>
-                <li>Tillgången till metaller är begränsad och det är dessutom en energikrävande råvara att bryta. Om
-                    metall
-                    hålls ren kan den återvinnas hur många gånger som helst. Genom att till exempel återvinna aluminium
-                    sparas
-                    ca 95 % av den energi som skulle krävas vid nyproduktion.</li>
-                <li>Pappersfiber kan återvinnas 5-7 gånger och blir sedan fjärrvärme. Genom att återvinna papper sparar
-                    pappersbruken ca 60% elenergi i jämförelse med vad som skulle krävas för nyproduktion. </li>
-                <li>Glas kan återvinnas hur många gånger som helst och glasbruken minskar sitt enerigbehov med 50% genom
-                    returglas. </li>
-            </ul>
-            <p class="source">Källa: Nodava "Vinst med återvinning" http://www.nodava.se/?q=node/80 Publicerad: 2019.
-                Hämtad 2019-10-23.
-            </p>
+                    <h2>Bondbönor</h2>
+                    <ul>
+                        <li>Planteras i april/maj</li>
+                        <li>planteringsmått: 15 cm mellan plantorna och 50-70 cm mellan raderna</li>
+                        <li>planterings djup: ca 5-8 cm</li>
+                        <li>Binder mycket kväve till jorden</li>
+                        <li>Angrips ofta av bladlöss. kan behandlas med 5% såpa</li>
+                    </ul>
+                </article>
+                <article>
 
+                    <h2>Vaxbönor</h2>
+                    <ul>
+                        <li>Planteras i april</li>
+                        <li>Planteringsmått. 10-12 cm mellan plantorna och 50-60 cm mellan raderna</li>
+                        <li>Trivs bäst i sandrik, djup, lucker jord.</li>
+                        <li>Planterings djup: ca 3-5 cm</li>
+                        <li>Binder mycket kväve till jorden</li>
+                    </ul>
+                </article>
+
+            </div>
+            <p class="source">Källa "Lindbloms frö"
+                https://www.lindbloms.se/gronsaksfro/sallat-lactuca/romersk-sallat-xamena-little-gem-certifierat-ekofro-primat-pelleterat-bl-16-32-nr0-lmv1,
+                Publicerad: 2019. Hämtad: 2019-10-26.
+                Töringe Sanna. 2016. "Köksträdgården -Plantering, odling, recept" Bokförlaget Semic </p>
         </div>
     </div>
     <footer>
@@ -108,7 +121,8 @@
     </footer>
 
 
-
 </body>
+
+
 
 </html>

@@ -15,8 +15,8 @@
     <link rel="stylesheet" type="text/css" href="./css/flexboxtempaltes.css">
     <link rel="stylesheet" type="text/css" href="./css/normalize.css">
     <title>Document</title>
-
-
+    <script src="shoppingcart.js"></script>
+    <script src="burger.js"></script>
     <script>
         /*Show bloggposts*/
         function getPosts() {
@@ -26,12 +26,10 @@
                 if (this.readyState == 4 && this.status == 200) {
                     var response = this.responseText;
                     var posts = JSON.parse(response);
-                    console.log(posts);
                     var postarea = document.getElementById("post-area");
                     postarea.innerHTML = "";
                     var innerposthtml = ""//
                     for (var i = 0; i < posts.length; i++) {
-                        console.log(posts[i]);
                         //innerposthtml += posts[i].userName + "<br>" + posts[i].title + "<br>" + posts[i].content + "<br>" + posts[i].postDate;
                         //innerposthtml += "<br>" + "<br>" + "<br>";
 
@@ -66,21 +64,6 @@
             };
             xhttp.send();
         }
-
-        /*function deletePost(e) {
-            var i = e.target.parentNode.parentNode.rowIndex;
-            id = document.getElementById("posts").rows[i].cells[0].innerHTML
-            console.log("deleting: " + id);
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("DELETE", "/blogg/posts/delete/" + id, true);
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("posts").deleteRow(i);
-                }
-            };
-            xhttp.send();
-        }*/
-
 
         /*Tar värdet från input elementet i form*/
         function addPost() {
@@ -293,11 +276,12 @@
                     //blogg.appendChild(bloggHeadingII)
 
                     //<button onclick="logout()">Logga ut</button>
+                    let brEl = document.createElement("br")
                     let logoutb = document.createElement("button")
                     logoutb.id = "logout-button"
                     logoutb.onclick = logout
                     logoutb.innerHTML = "Logga ut"
-
+                    bloggEditor.appendChild(brEl);
                     bloggEditor.appendChild(logoutb);
 
                     let loginb = document.getElementById("login-button");
@@ -327,6 +311,7 @@
         }
 
         function showBlogg() {
+            toggleHidden('header-nav', 800, 'burger')
             showBloggEditor()
             let postArea = document.getElementById("post-area");
             postArea.innerHTML = "";
@@ -339,26 +324,36 @@
     </script>
 </head>
 
-<body onload="showBlogg()">
+<body onload="showBlogg()" onresize="toggleHidden('header-nav', 800, 'burger')">
     <header class="parallax7">
-        <div class="flexbox flex-direction-column flex-justify-space-between h-100">
+        <div class="flexbox flex-direction-column flex-align-i-center flex-justify-space-between h-100">
             <div class="firstHeading flexbox flex-direction-row flex-justify-space-between w-100">
                 <a href="index.html"><img src="./Imagesmodified/Logo4.png" alt="Logo" class="logo" id="logo"></a>
-                <h1>Välkommen till vår bloggportal</h1>
-                <div class="flexbox flex-direction-row">
-                    <img src="./Imagesmodified/search2.png" alt="serchicon" class="searchimg">
-                    <img src="./Imagesmodified/icons8-messenger-bag-50.png" alt="carticon" class="bagimg">
+
+                <div class="flexbox flex-direction-row bag-and-search flex-align-i-center flex-justify-space-evenly">
+
+                    <div class="bag-container">
+                        <a href="checkout.html"><img src="./Imagesmodified/icons8-messenger-bag-50.png" alt="carticon"
+                                class="bagimg" onload="showSmallShoppingcart()"></a>
+                        <a class="small-shoppingcart-container" href="checkout.html">
+                            <div id="small-shoppingcart"></div>
+                        </a>
+                    </div>
+                    <div id="burger" onclick="toggleOpenBurger('burger','header-nav','flex')">
+                        <div class="burger-bun"></div>
+                        <div class="burger-bun"></div>
+                        <div class="burger-bun"></div>
+                    </div>
                 </div>
             </div>
-            <nav id="header-nav" class="hidden nav">
+            <h1>Blogg</h1>
+            <nav id="header-nav" class="show nav">
                 <a href="./climate.html">Klimatet</a>
                 <a href="./recykle.html">Återvinning</a>
                 <a href="./reuse.html">Återbruka</a>
                 <a href="./selfS.html">Självförsörjning</a>
-                <a href="./lifehacks.html">Life Hacks</a>
-                <a href="./blogg.html">Blogg</a>
+                <a href="./lifehacks.html">Life Hacks</a><a href="./blogg.html">Blogg</a>
                 <a href="./webbshop.html">Webbutik</a>
-
             </nav>
         </div>
     </header>
@@ -398,14 +393,16 @@
                     </div>-->
             </form>
         </div>
+        <br>
+        <a href="register.html"><button>Registrera ny användare</button></a>
         <!--end of div id 01-->
+        <div id="bloggEditor" class="flexbox flex-direction-column flex-justify-space-evenly flex-align-i-center">
+        </div>
         <div class="flexbox flex-direction-column flex-justify-center" id="bloggHeading">
             <h3 id="BloggHeadingI">Senaste</h3>
             <h2 id="BloggHeadingII">blogginlägg</h2>
             <img src="./Imagesmodified/icons8-book-and-pencil-100.png" width="50" height="50"
-            alt="Ikon bild av en öppne bok" />
-        </div>
-        <div id="bloggEditor" class="flexbox flex-direction-column flex-justify-center">
+                alt="Ikon bild av en öppne bok" />
         </div>
         <div id="post-area">
         </div>
